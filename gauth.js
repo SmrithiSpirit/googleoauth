@@ -1,3 +1,3 @@
 $(window).click(function(e) {
-    alert("smr"); 
+    console.log("smr"); 
 });
