@@ -1,1 +1,3 @@
-console.log("hello");
+window.addEventListener('message', function(eventData) {
+	console.log(eventData)
+})
