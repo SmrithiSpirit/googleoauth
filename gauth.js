@@ -1,3 +1,4 @@
 window.addEventListener('message', function(eventData) {
-	console.log("I want to login" + eventData)
+	let event = JSON.parse(eventData.data);
+	console.log("I want to login" + event.data.code)
 })
