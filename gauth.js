@@ -2,7 +2,7 @@
   var YOUR_CLIENT_ID = '944947769762-aqm905hggfioqk8jp8fh6a3n1vmek7ml.apps.googleusercontent.com';
   var YOUR_REDIRECT_URI = 'https://app.yellowmessenger.com/integrations/redirect-url';
   var fragmentString = location.hash.substring(1);
-
+console.log("fragmentString"+fragmentString)
   // Parse query string to see if page request is coming from OAuth 2.0 server.
   var params = {};
   var regex = /([^&=]+)=([^&]*)/g, m;
@@ -56,10 +56,12 @@
     // Parameters to pass to OAuth 2.0 endpoint.
     var params = {'client_id': YOUR_CLIENT_ID,
                   'redirect_uri': YOUR_REDIRECT_URI,
-                  'scope': 'https://www.googleapis.com/auth/drive.metadata.readonly',
+                  'scope': 'https://www.googleapis.com/auth/userinfo.email',
                   'state': 'eyJib3QiOiJ4MTU5MDY0NDMxMDc1NSIsInNlbmRlciI6IjE3NzQ4MjM5MjAyOTE0MjQ2NDQyMjc2ODM2In0=',
                   'include_granted_scopes': 'true',
-                  'response_type': 'token'};
+                  'response_type': 'code',
+                  'fetch_basic_profile' : 'true'
+                  };
 
     // Add form parameters as hidden input values.
     for (var p in params) {
