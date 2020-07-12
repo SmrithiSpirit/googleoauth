@@ -21,6 +21,7 @@
   function trySampleRequest() {
     var params = JSON.parse(localStorage.getItem('oauth2-test-params'));
     if (params && params['access_token']) {
+    	console.log("in if condition")
       var xhr = new XMLHttpRequest();
       xhr.open('GET',
           'https://www.googleapis.com/drive/v3/about?fields=user&' +
@@ -30,6 +31,7 @@
           console.log(xhr.response);
         } else if (xhr.readyState === 4 && xhr.status === 401) {
           // Token invalid, so prompt for user permission.
+          console.log("in else condition :::")
           oauth2SignIn();
         }
       };
