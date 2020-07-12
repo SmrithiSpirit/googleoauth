@@ -2,6 +2,7 @@
   var YOUR_CLIENT_ID = '944947769762-aqm905hggfioqk8jp8fh6a3n1vmek7ml.apps.googleusercontent.com';
   var YOUR_REDIRECT_URI = 'https://app.yellowmessenger.com/integrations/redirect-url';
   var fragmentString = location.hash.substring(1);
+console.log(fragmentString)
 
   // Parse query string to see if page request is coming from OAuth 2.0 server.
   var params = {};
