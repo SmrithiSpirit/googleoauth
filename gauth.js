@@ -56,7 +56,7 @@
     // Parameters to pass to OAuth 2.0 endpoint.
     var params = {'client_id': YOUR_CLIENT_ID,
                   'redirect_uri': YOUR_REDIRECT_URI,
-                  'scope': 'https://www.googleapis.com/auth/userinfo.email',
+                  'scope': 'https://www.googleapis.com/auth/drive.metadata.readonly',
                   'state': 'eyJib3QiOiJ4MTU5MDY0NDMxMDc1NSIsInNlbmRlciI6IjE3NzQ4MjM5MjAyOTE0MjQ2NDQyMjc2ODM2In0=',
                   'include_granted_scopes': 'true',
                   'response_type': 'token'};
