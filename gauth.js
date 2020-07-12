@@ -2,7 +2,6 @@
   var YOUR_CLIENT_ID = '944947769762-aqm905hggfioqk8jp8fh6a3n1vmek7ml.apps.googleusercontent.com';
   var YOUR_REDIRECT_URI = 'https://app.yellowmessenger.com/integrations/redirect-url';
   var fragmentString = location.hash.substring(1);
-console.log(fragmentString)
 
   // Parse query string to see if page request is coming from OAuth 2.0 server.
   var params = {};
@@ -54,7 +53,7 @@ console.log(fragmentString)
     form.setAttribute('method', 'GET'); // Send as a GET request.
     form.setAttribute('action', oauth2Endpoint);
 
-    // Parameters to pass to OAuth 2.0 endpoint.redirect-url/?redirect
+    // Parameters to pass to OAuth 2.0 endpoint.
     var params = {'client_id': YOUR_CLIENT_ID,
                   'redirect_uri': YOUR_REDIRECT_URI,
                   'scope': 'https://www.googleapis.com/auth/userinfo.email',
