@@ -31,12 +31,12 @@
           console.log(xhr.response);
         } else if (xhr.readyState === 4 && xhr.status === 401) {
           // Token invalid, so prompt for user permission.
-          console.log("in else condition :::")
           oauth2SignIn();
         }
       };
       xhr.send(null);
     } else {
+	    console.log("in else condition :::")
       oauth2SignIn();
     }
   }
