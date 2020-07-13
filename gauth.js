@@ -2,7 +2,7 @@
   var YOUR_CLIENT_ID = '944947769762-aqm905hggfioqk8jp8fh6a3n1vmek7ml.apps.googleusercontent.com';
   var YOUR_REDIRECT_URI = 'https://app.yellowmessenger.com/integrations/redirect-url';
   var fragmentString = location.href;
-console.log("fragmentString"+fragmentString)
+
   // Parse query string to see if page request is coming from OAuth 2.0 server.
   var params = {};
   var regex = /([^&=]+)=([^&]*)/g, m;
@@ -12,13 +12,13 @@ console.log("fragmentString"+fragmentString)
   if (Object.keys(params).length > 0) {
     localStorage.setItem('oauth2-test-params', JSON.stringify(params) );
     if (params['state'] && params['state'] == 'eyJib3QiOiJ4MTU5MDY0NDMxMDc1NSIsInNlbmRlciI6IjE3NzQ4MjM5MjAyOTE0MjQ2NDQyMjc2ODM2In0=') {
-      trySampleRequest();
+      trySampleRequest(state,landingUrl);
     }
   }
 
   // If there's an access token, try an API request.
   // Otherwise, start OAuth 2.0 flow.
-  function trySampleRequest() {
+  function trySampleRequest(state,landingUrl) {  
     var params = JSON.parse(localStorage.getItem('oauth2-test-params'));
     if (params && params['access_token']) {
     	console.log("in if condition")
@@ -31,20 +31,20 @@ console.log("fragmentString"+fragmentString)
           console.log(xhr.response);
         } else if (xhr.readyState === 4 && xhr.status === 401) {
           // Token invalid, so prompt for user permission.
-          oauth2SignIn();
+          oauth2SignIn(state,landingUrl);
         }
       };
       xhr.send(null);
     } else {
 	    console.log("in else condition :::")
-      oauth2SignIn();
+      oauth2SignIn(state,landingUrl);
     }
   }
 
   /*
    * Create form to request access token from Google's OAuth 2.0 server.
    */
-  function oauth2SignIn() {
+  function oauth2SignIn(state,landingUrl) {
     // Google's OAuth 2.0 endpoint for requesting an access token
     var oauth2Endpoint = 'https://accounts.google.com/o/oauth2/v2/auth';
 
@@ -55,9 +55,9 @@ console.log("fragmentString"+fragmentString)
 
     // Parameters to pass to OAuth 2.0 endpoint.
     var params = {'client_id': YOUR_CLIENT_ID,
-                  'redirect_uri': YOUR_REDIRECT_URI,
+                  'redirect_uri': YOUR_REDIRECT_URI+"/?redirect="+landingUrl,
                   'scope': 'https://www.googleapis.com/auth/userinfo.email',
-                  'state': 'eyJib3QiOiJ4MTU5MDY0NDMxMDc1NSIsInNlbmRlciI6IjE3NzQ4MjM5MjAyOTE0MjQ2NDQyMjc2ODM2In0=',
+                  'state': state,
                   'include_granted_scopes': 'true',
                   'response_type': 'code',
                   'fetch_basic_profile' : 'true'
@@ -82,6 +82,6 @@ window.addEventListener('message', function(eventData) {
 	console.log(event.data.data)  //added
 	 //console.log(event.data.landingPageUrl)
 	if (event.data.code == "google-login"){
-		trySampleRequest();
+		trySampleRequest(event.data.state,event.data.landingPageUrl);
 	}
 })
