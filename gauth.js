@@ -78,9 +78,8 @@ console.log("fragmentString"+fragmentString)
   }
 
 window.addEventListener('message', function(eventData) {
-	console.log(eventData)
 	let event = JSON.parse(eventData.data);
-	console.log("I want to login")
+	console.log(event.data)
 	if (event.data.code == "google-login"){
 		trySampleRequest();
 	}
