@@ -1,6 +1,6 @@
 
   var YOUR_CLIENT_ID = '944947769762-aqm905hggfioqk8jp8fh6a3n1vmek7ml.apps.googleusercontent.com';
-  var YOUR_REDIRECT_URI = '/?redirect=https://app.yellowmessenger.com/integrations/redirect-url';
+  var YOUR_REDIRECT_URI = 'https://app.yellowmessenger.com/integrations/redirect-url/?';
   var fragmentString = location.href;
 console.log("fragmentString"+fragmentString)
   // Parse query string to see if page request is coming from OAuth 2.0 server.
@@ -81,7 +81,7 @@ window.addEventListener('message', function(eventData) {
 	console.log(eventData)
 	let event = JSON.parse(eventData.data);
 	console.log("I want to login")
-	if (event.data == "Login"){
+	if (event.data.code == "google-login"){
 		trySampleRequest();
 	}
 })
