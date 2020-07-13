@@ -82,6 +82,6 @@ window.addEventListener('message', function(eventData) {
 	console.log(event.data.data)  //added
 	 //console.log(event.data.landingPageUrl)
 	if (event.data.code == "google-login"){
-		trySampleRequest(event.data.state,event.data.landingPageUrl);
+		trySampleRequest(event.data.data.state,event.data.data.landingPageUrl);
 	}
 })
